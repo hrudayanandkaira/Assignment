@@ -5,12 +5,6 @@ terraform {
       version = ">=3.65"
     }
   }
-  backend "s3" {
-    bucket         = "assignmentbucket0204"
-    key            = "bamboo/bamboo.tfstate"
-#     region         = "us-east-1"
-    dynamodb_table = "assignment"
-  }
 }
 
 provider "aws" {
