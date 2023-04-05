@@ -11,7 +11,7 @@ provider "aws" {
   region = "us-west-1"
 }
 module "ec2_security_group" {
-  source                     = "../../sg"
+  source                     = "../sg"
   security_group_name        = "first_SG"
   security_group_description = "This is the dev security grp for Atlassian Bamboo"
   tags = {
@@ -27,7 +27,7 @@ module "ec2_rule" {
     {
       from_port   = 54663
       to_port     = 54663
-      cidr_blocks = ["172.31.0.1/32"] #need to be changed
+      cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
       protocol    = "tcp"
       type        = "ingress"
       description = "Agent Server to Bamboo Server"
@@ -35,7 +35,7 @@ module "ec2_rule" {
     {
       from_port   = 54663
       to_port     = 54663
-      cidr_blocks = ["172.31.0.1/32"] #need to be changed
+      cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
       protocol    = "tcp"
       type        = "ingress"
       description = "Agent Server to Bamboo Server"
