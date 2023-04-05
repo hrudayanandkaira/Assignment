@@ -44,7 +44,24 @@ module "ec2_rule" {
   ]
 }
 
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
 
+  name = "my-vpc"
+  cidr = "10.0.0.0/16"
+
+  azs             = ["eu-west-1a", "eu-west-1b"]
+  private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
+
+  enable_nat_gateway = false
+  enable_vpn_gateway = false
+
+  tags = {
+    Terraform = "true"
+    Environment = "dev"
+  }
+}
 
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
@@ -54,7 +71,7 @@ module "ec2_instance" {
   instance_type          = "t2.micro"
   monitoring             = true
 #   security_group_id = [module.ec2_security_group.sg_id]
-  subnet_id              = "subnet-0c9f8b746957b6e2b"
+  vpc_id              =  module.vpc.vpc_id
 
   tags = {
     Terraform   = "true"
