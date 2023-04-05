@@ -71,7 +71,7 @@ module "ec2_instance" {
   instance_type          = "t2.micro"
   monitoring             = true
 #   security_group_id = [module.ec2_security_group.sg_id]
-  vpc_id              =  module.vpc.vpc_id
+#   vpc_id              =  module.vpc.vpc_id
 
   tags = {
     Terraform   = "true"
