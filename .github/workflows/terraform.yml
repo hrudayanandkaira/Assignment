@@ -25,7 +25,7 @@ jobs:
          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_ACCESSKEY }}
          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_SECRET_ACCESS_KEY}}
          AWS_DEFAULT_REGION: us-east-2
-         ROOT_PATH: '${{github.workspace}}/test'
+         ROOT_PATH: '${{github.workspace}}/execution-test'
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -33,17 +33,17 @@ jobs:
       - uses: hashicorp/setup-terraform@v2.0.0 
 
       # Runs a single command using the runners shell
-      - name: Securitygroupinit
+      - name: init
         run: 
            terraform init
         working-directory: ${{env.ROOT_PATH}}
 
       # Runs a set of commands using the runners shell
-      - name: Securitygroupplan
+      - name: plan
         run:  
            terraform plan
         working-directory: ${{env.ROOT_PATH}}
-      - name: Securitygroupapply
+      - name: apply
         run:  
            terraform apply -auto-approve 
         working-directory: ${{env.ROOT_PATH}}
