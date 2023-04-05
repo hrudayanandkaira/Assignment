@@ -79,7 +79,7 @@ module "ec2_instance" {
     Environment = "dev"
   }
 }
- ###################################s3 bucket creation################ 
+ ###################################s3 bucket creation############
   module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
