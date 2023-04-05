@@ -28,7 +28,7 @@ module "ec2_rule" {
     {
       from_port   = 54663
       to_port     = 54663
-      cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
+#       cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
       protocol    = "tcp"
       type        = "ingress"
       description = "Agent Server to Bamboo Server"
@@ -36,7 +36,7 @@ module "ec2_rule" {
     {
       from_port   = 54663
       to_port     = 54663
-      cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
+#       cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
       protocol    = "tcp"
       type        = "ingress"
       description = "Agent Server to Bamboo Server"
