@@ -13,10 +13,10 @@ provider "aws" {
 module "ec2_security_group" {
   source                     = "../Security_group"
   security_group_name        = "first_SG"
-  security_group_description = "This is the dev security grp for Atlassian Bamboo"
+  security_group_description = "This is the dev security "
   vpc_id = "vpc-07b1c88ead1bdcf74"
   tags = {
-    Name = "EQ_AWS_Dev_Atlassian_Bamboo"
+    Name = "AWS_Dev_SG"
   }
 }
 
@@ -31,15 +31,15 @@ module "ec2_rule" {
 #       cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
       protocol    = "tcp"
       type        = "ingress"
-      description = "Agent Server to Bamboo Server"
+      description = "sg_1"
     },
     {
       from_port   = 54663
       to_port     = 54663
 #       cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
       protocol    = "tcp"
-      type        = "ingress"
-      description = "Agent Server to Bamboo Server"
+      type        = "egress"
+      description = "sg_2"
     },
   ]
 }
