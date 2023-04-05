@@ -22,7 +22,7 @@ module "ec2_security_group" {
 
 module "ec2_rule" {
   source            = "../Security_group/security_group_rules"
-  security_group_id = module.ec2_security_group.security_group_id
+  security_group_id = module.ec2_security_group.sg_id
   security_group_rule = [
 
     {
