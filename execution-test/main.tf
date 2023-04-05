@@ -11,7 +11,7 @@ provider "aws" {
   region = "us-west-1"
 }
 module "ec2_security_group" {
-  source                     = "../sg"
+  source                     = "../security_group"
   security_group_name        = "first_SG"
   security_group_description = "This is the dev security grp for Atlassian Bamboo"
   tags = {
@@ -20,7 +20,7 @@ module "ec2_security_group" {
 }
 
 module "ec2_rule" {
-  source            = "../sg/sg_rules"
+  source            = "../security_group/security_group_rules"
   security_group_id = module.ec2_security_group.sg_id
   security_group_rule = [
 
