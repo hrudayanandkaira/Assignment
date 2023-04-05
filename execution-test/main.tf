@@ -10,6 +10,14 @@ terraform {
 provider "aws" {
   region = "us-west-1"
 }
+#########################################
+backend "s3" {
+    bucket         = "assignmentbucket0204"
+    key            = "bamboo/bamboo.tfstate"
+#     region         = "us-east-1"
+    dynamodb_table = "assignment"
+  }
+##############################################
 module "ec2_security_group" {
   source                     = "../Security_group"
   security_group_name        = "first_SG"
@@ -79,4 +87,6 @@ module "ec2_instance" {
     Environment = "dev"
   }
 }
+  #######################################
+  
  
