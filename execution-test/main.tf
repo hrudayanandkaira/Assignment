@@ -29,7 +29,7 @@ module "ec2_rule" {
     {
       from_port   = 54663
       to_port     = 54663
-#       cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
+      cidr_blocks = ["10.0.128.0/17"] #need to be changed
       protocol    = "tcp"
       type        = "ingress"
       description = "sg_1"
@@ -37,7 +37,7 @@ module "ec2_rule" {
     {
       from_port   = 54663
       to_port     = 54663
-#       cidr_blocks = ["0.0.0.0.0.0/32"] #need to be changed
+       cidr_blocks = ["10.0.0.0/17"] #need to be changed
       protocol    = "tcp"
       type        = "egress"
       description = "sg_2"
