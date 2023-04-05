@@ -53,7 +53,7 @@ module "ec2_instance" {
   ami                    = "ami-01d9361b1c190a61b"
   instance_type          = "t2.micro"
   monitoring             = true
-  vpc_security_group_ids = module.ec2_security_group.sg_id
+  security_group_id = [module.ec2_security_group.sg_id]
   subnet_id              = "subnet-0c9f8b746957b6e2b"
 
   tags = {
