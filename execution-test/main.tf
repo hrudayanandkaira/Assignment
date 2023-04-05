@@ -5,18 +5,18 @@ terraform {
       version = ">=3.65"
     }
   }
-}
-
-provider "aws" {
-  region = "us-west-1"
-}
-#########################################
-backend "s3" {
+  backend "s3" {
     bucket         = "assignmentbucket0204"
     key            = "bamboo/bamboo.tfstate"
 #     region         = "us-east-1"
     dynamodb_table = "assignment"
   }
+}
+
+provider "aws" {
+  region = "us-west-1"
+}
+
 ##############################################
 module "ec2_security_group" {
   source                     = "../Security_group"
