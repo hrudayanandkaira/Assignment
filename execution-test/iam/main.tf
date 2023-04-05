@@ -23,29 +23,12 @@ locals {
     local.allowed_services_security
   )
 }
-
 module "read_only_iam_policy" {
   source = "../../modules/iam-read-only-policy"
 
   name        = "example"
   path        = "/"
   description = "My read only example policy"
-
-  allowed_services = local.allowed_services
-
-  tags = {
-    PolicyDescription = "My read only example policy"
-  }
-}
-
-module "read_only_iam_policy_doc" {
-  source = "../../modules/iam-read-only-policy"
-
-  name        = "only-doc-example"
-  path        = "/"
-  description = "My read only example policy"
-
-  create_policy = false
 
   allowed_services = local.allowed_services
 
