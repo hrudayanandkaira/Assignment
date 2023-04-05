@@ -10,7 +10,7 @@ terraform {
 provider "aws" {
   region = "us-west-1"
 }
-#########################################
+#####################################
 backend "s3" {
     bucket         = "assignmentbucket0204"
     key            = "bamboo/bamboo.tfstate"
