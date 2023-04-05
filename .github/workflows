@@ -1,0 +1,45 @@
+name: "Terraform Deployment"
+on:
+  # Manual trigger
+  workflow_dispatch:
+  push:
+    paths:
+      - 'keypair/**'
+  
+defaults:
+  run:
+    shell: bash
+jobs:
+  terraform:
+    name:   dev-runner
+    runs-on: ubuntu-latest
+    env:
+         AWS_ACCESS_KEY_ID: ${{ secrets.DEV_ACCESSKEY }}
+         AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_SECRET_ACCESS_KEY}}
+         AWS_DEFAULT_REGION:  eu-west-1
+         ROOT_PATH: '${{github.workspace}}/keypair'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_wrapper: false
+      - name: Terraform Init
+        id: init
+        run:         
+           terraform init
+        working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Plan
+        id: plan
+        run: 
+          terraform plan
+        working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Apply
+        
+        id: apply
+        run: terraform apply -auto-approve
+        working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform destroy
+        
+        id: destroy
+        run: terraform destroy
+        working-directory: ${{env.ROOT_PATH}}
