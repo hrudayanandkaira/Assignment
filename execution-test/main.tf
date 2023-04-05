@@ -83,7 +83,7 @@ module "ec2_instance" {
   module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "my-s3-bucket"
+  bucket = "my_Assignment_s3_bucket"
   acl    = "private"
 
   versioning = {
