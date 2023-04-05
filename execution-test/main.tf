@@ -14,6 +14,7 @@ module "ec2_security_group" {
   source                     = "../Security_group"
   security_group_name        = "first_SG"
   security_group_description = "This is the dev security grp for Atlassian Bamboo"
+  vpc_id = "vpc-07b1c88ead1bdcf74"
   tags = {
     Name = "EQ_AWS_Dev_Atlassian_Bamboo"
   }
