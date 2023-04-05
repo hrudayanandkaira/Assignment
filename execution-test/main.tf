@@ -15,7 +15,7 @@ module "ec2_security_group" {
   security_group_name        = "first_SG"
   security_group_description = "This is the dev security "
   vpc_id = module.vpc.vpc_id
-  source_security_group_id = module.ec2_security_group.sg_id
+#   source_security_group_id = module.ec2_security_group.sg_id
   tags = {
     Name = "AWS_Dev_SG"
   }
