@@ -1,49 +1,41 @@
-# This is a basic workflow to help you get started with Actions.
+name: "Terraform"
 
-name: execution-test
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    paths: 
-        - 'execution-test/**'
-  pull_request:
-    branches: [ "main" ]
-    
+    branches:
+      - main
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch: 
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  terraform:
+    name: "Terraform"
     runs-on: ubuntu-latest
     env:
-         AWS_ACCESS_KEY_ID: ${{ secrets.DEV_ACCESSKEY }}
-         AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_SECRET_ACCESS_KEY}}
-         AWS_DEFAULT_REGION: us-east-2
-         ROOT_PATH: '${{github.workspace}}/execution-test'
-    # Steps represent a sequence of tasks that will be executed as part of the job
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    defaults:
+      run:
+        working-directory: src
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - uses: hashicorp/setup-terraform@v2.0.0 
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: init
-        run: 
-           terraform init
-        working-directory: ${{env.ROOT_PATH}}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.1
+          terraform_wrapper: false
 
-      # Runs a set of commands using the runners shell
-      - name: plan
-        run:  
-           terraform plan
-        working-directory: ${{env.ROOT_PATH}}
-      - name: apply
-        run:  
-           terraform apply -auto-approve 
-        working-directory: ${{env.ROOT_PATH}}
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
