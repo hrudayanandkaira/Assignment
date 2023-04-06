@@ -22,7 +22,7 @@ module "ec2_security_group" {
     Name = "AWS_Dev_SG"
   }
 }
-
+##############################security group###############################################################
 module "ec2_rule" {
   source            = "../Security_group/security_group_rules"
   security_group_id = module.ec2_security_group.sg_id
@@ -46,7 +46,7 @@ module "ec2_rule" {
     },
   ]
 }
-
+########################################       vpc    #########################
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -71,14 +71,14 @@ locals {
     test = "unit-test"
   }
 }
-
+##################################  glue  #########################################################
 module "glue" {
   source = "../glue"
 
   name        = "data_lake_tf_test"
   description = "Glue DB for Terraform test"
 }
-
+################################################## iam   #################################
 module "iam" {
   source = "../iam"
 
@@ -87,7 +87,7 @@ module "iam" {
   external_ids = ["test_external_id_1", "test_external_id_2"]
   tags         = local.tags
 }
-
+###################################################  emr #####################################
 module "emr" {
   source = "../emr"
 
@@ -101,7 +101,7 @@ module "emr" {
   iam_emr_service_role     = module.iam.iam_emr_service_role
   iam_emr_instance_profile = module.iam.iam_emr_instance_profile
 }
-  #  create a new sns topic
+ #########################  create a new sns topic            ##################################################
 module "with-new-sns-topic" {
   source               = "../sns"
   email_addresses_list = ["my.test@mail.com"]
