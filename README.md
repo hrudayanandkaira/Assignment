@@ -1,6 +1,11 @@
 # AWS resources
 
-aws
+AWS SNS 
+AWS EMR
+AWS SECURITY GROUP
+AWS LAKEFORMATION
+AWS IAM
+AWS GLUE 
 
 ## Usage
 
@@ -35,14 +40,6 @@ $ terraform plan
 | <a name="module_kms"></a> [kms](#module\_kms) | terraform-aws-modules/kms/aws | ~> 1.0 |
 | <a name="module_sqs"></a> [sqs](#module\_sqs) | terraform-aws-modules/sqs/aws | ~> 4.0 |
 
-## Resources
 
-
-
-## Inputs
-
-No inputs.
-
-## Outputs
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
