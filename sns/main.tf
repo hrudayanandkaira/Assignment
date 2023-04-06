@@ -1,5 +1,5 @@
 # Optionally create a sns topic
-resource "aws_sns_topic" "this" {
+resource "aws_sns_topic" "notification" {
   count             = var.sns_topic.topic_name != "" ? 1 : 0
   name              = var.sns_topic.topic_name
   display_name      = var.sns_topic.display_name
