@@ -1,12 +1,13 @@
-# AWS resources
 
--AWS SNS /
--AWS EMR /n
-AWS SECURITY GROUP
-AWS LAKEFORMATION
-AWS IAM
-AWS GLUE 
+# Data lake project using Terraform
 
+## RESOURCESS
+- AWS SNS
+- AWS EMR
+- AWSDECURITY GROUP
+- AWS LAKEFORMATION
+- AWS IAM
+- AWS GLUE
 ## Usage
 
 To run this example you need to execute:
@@ -30,15 +31,6 @@ $ terraform plan
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.40 |
 
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_complete_sns"></a> [complete\_sns](#module\_complete\_sns) | ../../ | n/a |
-| <a name="module_default_sns"></a> [default\_sns](#module\_default\_sns) | ../../ | n/a |
-| <a name="module_disabled_sns"></a> [disabled\_sns](#module\_disabled\_sns) | ../../ | n/a |
-| <a name="module_kms"></a> [kms](#module\_kms) | terraform-aws-modules/kms/aws | ~> 1.0 |
-| <a name="module_sqs"></a> [sqs](#module\_sqs) | terraform-aws-modules/sqs/aws | ~> 4.0 |
 
 
 
