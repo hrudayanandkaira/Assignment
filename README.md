@@ -11,6 +11,8 @@
 ## Usage
 
 Github action is used for cicd of the terraform
+-  for state locking dynamo db is used 
+-  tf state file is saved in s3 bucket
 
 ```bash
 $ terraform fmt
