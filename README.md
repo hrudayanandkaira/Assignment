@@ -10,9 +10,10 @@
 - AWS GLUE
 ## Usage
 
-To run this example you need to execute:
+Github action is used for cicd of the terraform
 
 ```bash
+$ terraform fmt
 $ terraform init
 $ terraform plan
 ```
