@@ -18,7 +18,9 @@ Github action is used for cicd of the terraform
 -  iam provised with least access
 -  alerting email is my.test@mail.com
 -  region "eu-west-1 "
--  
+-  always create a new branch when creating new implementation .
+-  add comments for easy  troubleshooting and back trasing 
+-  new touch tf file , make imlementation throught code.
 
 ```bash
 $ terraform fmt
