@@ -92,7 +92,7 @@ module "emr" {
   source = "../emr"
 
   s3_bucket    = "data_lake_tf_test_s3_bucket"
-  subnet_id    = ["id=subnet-0e34a0f7a925a4573"]
+  subnet_id    = module.ec2_security_group.sg_id
   tags         = local.tags
   cluster_name = "test-cluster"
 
