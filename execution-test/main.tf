@@ -92,7 +92,7 @@ module "emr" {
   source = "../emr"
 
   s3_bucket    = "data_lake_tf_test_s3_bucket"
-  subnet_id    = module.vpc.vpc_id
+  subnet_id    = ["id=subnet-0e34a0f7a925a4573"]
   tags         = local.tags
   cluster_name = "test-cluster"
 
