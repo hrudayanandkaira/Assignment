@@ -66,21 +66,38 @@ module "vpc" {
   }
 }
 
-module "ec2_instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 3.0"
-  name = "single-instance"
-  ami                    = "ami-01d9361b1c190a61b"
-  instance_type          = "t2.micro"
-  monitoring             = true
-#   security_group_id = [module.ec2_security_group.sg_id]
-#   vpc_id              =  module.vpc.vpc_id
-
+locals {
   tags = {
-    Terraform   = "true"
-    Environment = "dev"
+    test = "unit-test"
   }
 }
-  #######################################
-  
- 
+
+module "glue" {
+  source = "../glue"
+
+  name        = "data_lake_tf_test"
+  description = "Glue DB for Terraform test"
+}
+
+module "iam" {
+  source = "../iam"
+
+  suffix       = "dev"
+  s3_bucket    = "datalaketftests3bucket"
+  external_ids = ["test_external_id_1", "test_external_id_2"]
+  tags         = local.tags
+}
+
+module "emr" {
+  source = "../emr"
+
+  s3_bucket    = "data_lake_tf_test_s3_bucket"
+  subnet_id    = module.vpc.vpc_id
+  tags         = local.tags
+  cluster_name = "test-cluster"
+
+  # LEAVE THIS AS-IS
+  iam_emr_autoscaling_role = module.iam.iam_emr_autoscaling_role
+  iam_emr_service_role     = module.iam.iam_emr_service_role
+  iam_emr_instance_profile = module.iam.iam_emr_instance_profile
+}
