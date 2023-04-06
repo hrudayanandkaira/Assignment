@@ -8,6 +8,7 @@
 - AWS LAKEFORMATION
 - AWS IAM
 - AWS GLUE
+- VPC, SUBNETS
 ## Usage
 
 Github action is used for cicd of the terraform
@@ -16,6 +17,8 @@ Github action is used for cicd of the terraform
 -  all the resources are provision through the terraform
 -  iam provised with least access
 -  alerting email is my.test@mail.com
+-  region "eu-west-1 "
+-  
 
 ```bash
 $ terraform fmt
