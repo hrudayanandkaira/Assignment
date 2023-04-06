@@ -96,8 +96,20 @@ module "emr" {
   tags         = local.tags
   cluster_name = "test-cluster"
 
-  # LEAVE THIS AS-IS
+  #
   iam_emr_autoscaling_role = module.iam.iam_emr_autoscaling_role
   iam_emr_service_role     = module.iam.iam_emr_service_role
   iam_emr_instance_profile = module.iam.iam_emr_instance_profile
+}
+  #  create a new sns topic
+module "with-new-sns-topic" {
+  source               = "../sns"
+  email_addresses_list = ["my.test@mail.com"]
+  sns_topic = {
+    topic_name   = "mytest"
+    display_name = "mytest"
+    policy       = null
+    kms_key_id   = "myKmsKeyId"
+  }
+  tags = { "global.env" = "test" }
 }
