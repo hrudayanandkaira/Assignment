@@ -13,7 +13,7 @@ locals {
   emails        = join(",", var.email_addresses_list)
 }
 
-# Add the email endpoint
+# Add the email endpoint.
 resource "null_resource" "email_subscription" {
   depends_on = [local.sns_topic_arn]
 
